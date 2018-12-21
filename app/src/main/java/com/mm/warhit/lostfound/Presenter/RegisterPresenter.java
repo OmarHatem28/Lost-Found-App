@@ -12,6 +12,9 @@ public class RegisterPresenter {
 //    RegisterView registerView;
 
     public void addUserPres(User user, Context context){
+
+        user.setPassword(hashFunction(user.getPassword()));
+
         boolean status = fireBaseDB.addUser(user);
 
         if ( status ){
@@ -22,7 +25,23 @@ public class RegisterPresenter {
             sharedEditor.putString("password", user.getPassword());
             sharedEditor.putString("phone", user.getPhone());
             sharedEditor.apply();
+
+//            registerView.addedUser();
         }
+    }
+
+    private String hashFunction(String pass) {
+
+        int ascii;
+        char chr;
+        String hashed = "";
+        for ( int i=0;i<pass.length();i++){
+            ascii = pass.charAt(i);
+            ascii += 8;
+            chr = (char) ascii;
+            hashed += chr;
+        }
+        return hashed;
     }
 
 }

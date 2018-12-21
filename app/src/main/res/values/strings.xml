@@ -7,4 +7,6 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="create_one"><font color="#000000">No account yet?</font> <b><font color="#00eaff">Create one</font></b></string>
+    <string name="login"><font color="#000000">Already a member?</font> <b><font color="#00eaff">Login</font></b></string>
 </resources>
