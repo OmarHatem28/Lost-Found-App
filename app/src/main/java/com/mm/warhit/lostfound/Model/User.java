@@ -1,18 +1,16 @@
 package com.mm.warhit.lostfound.Model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class User {
 
     String name, email, password, phone;
-    ArrayList<Post> posts;
 
-    public User(String name, String email, String password, String phone, ArrayList<Post> posts) {
+    public User(String name, String email, String password, String phone) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.phone = phone;
-        this.posts = posts;
     }
 
     public User() {
@@ -48,13 +46,5 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public ArrayList<Post> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(ArrayList<Post> posts) {
-        this.posts = posts;
     }
 }

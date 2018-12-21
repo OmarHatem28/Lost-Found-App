@@ -4,17 +4,26 @@ import android.net.Uri;
 
 public class Post {
 
-    String description, category, serialNumber;
+    String description, category, serialNumber, author;
     Uri itemImage;
 
-    public Post(String description, String category, String serialNumber, Uri itemImage) {
+    public Post(String description, String category, String serialNumber, String author, Uri itemImage) {
         this.description = description;
         this.category = category;
         this.serialNumber = serialNumber;
+        this.author = author;
         this.itemImage = itemImage;
     }
 
     public Post() {
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public String getDescription() {
