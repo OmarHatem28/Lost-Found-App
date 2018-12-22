@@ -56,7 +56,7 @@ public class LoginPresenter {
                         DocumentSnapshot doc = task.getResult();
                         if (task.isSuccessful()) {
                             Map<String, Object> userHM = doc.getData();
-                            if (user.getPassword() == userHM.get("password")) {
+                            if (user.getPassword().equals(userHM.get("password")) ) {
                                 user.setName((String) userHM.get("name"));
                                 user.setPhone((String) userHM.get("phone"));
                                 saveData();
