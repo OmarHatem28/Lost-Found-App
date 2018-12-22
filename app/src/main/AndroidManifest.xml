@@ -12,7 +12,7 @@
         android:roundIcon="@drawable/lost_found_ico"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.RegisterActivity"> </activity>
+        <activity android:name=".Activity.RegisterActivity"></activity>
         <activity
             android:name=".Activity.PostsActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -22,6 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activity.LoginActivity"></activity>
     </application>
 
 </manifest>
