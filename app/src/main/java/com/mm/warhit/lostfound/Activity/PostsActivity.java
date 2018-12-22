@@ -143,7 +143,7 @@ public class PostsActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         postPresenter = new PostPresenter(this, this);
-        postPresenter.getPosts();
+        postPresenter.getPosts("");
 
         //if signed in
         SharedPreferences sharedPreferences=getSharedPreferences("userData",MODE_PRIVATE);
@@ -193,8 +193,15 @@ public class PostsActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        // ToDo: implement search condition
+        if (id == R.id.category_item_electronics) {
+            postPresenter.getPosts("Electronics");
+        }else if (id == R.id.category_item_mobiles) {
+            postPresenter.getPosts("Mobiles");
+        }else if (id == R.id.category_item_clothes) {
+            postPresenter.getPosts("Clothes");
+        }else if (id == R.id.category_item_others) {
+            postPresenter.getPosts("Others");
         }
 
         return super.onOptionsItemSelected(item);

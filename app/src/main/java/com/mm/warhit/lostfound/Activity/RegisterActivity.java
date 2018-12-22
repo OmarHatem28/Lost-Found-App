@@ -169,7 +169,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
         }
 
         if ( phone.isEmpty() || phone.length() < 4 ) {
-            _passwordText.setError("at least 4 numbers");
+            _phoneText.setError("at least 4 numbers");
             valid = false;
         } else {
             _phoneText.setError(null);
