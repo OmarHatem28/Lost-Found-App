@@ -101,7 +101,7 @@ public class PostsActivity extends AppCompatActivity
                                             post.setDescription(itemDescription);
                                             post.setSerialNumber(itemSerialNumber);
                                             //Todo: add Spinner
-//                                            post.setCategory();
+                                            post.setCategory("not now");
                                             //Todo: add Image Uploading Function
                                             postPresenter.addPost(post);
                                         }
@@ -144,6 +144,27 @@ public class PostsActivity extends AppCompatActivity
 
         postPresenter = new PostPresenter(this, this);
         postPresenter.getPosts();
+
+        //if signed in
+        SharedPreferences sharedPreferences=getSharedPreferences("userData",MODE_PRIVATE);
+        email=sharedPreferences.getString("email","");
+
+        if ( !email.equals("") ){
+            Menu nav_Menu = navigationView.getMenu();
+
+            nav_Menu.findItem(R.id.nav_login).setVisible(false);
+            nav_Menu.findItem(R.id.nav_register).setVisible(false);
+
+            nav_Menu.findItem(R.id.nav_signOut).setVisible(true);
+        }
+        else{
+            Menu nav_Menu = navigationView.getMenu();
+
+            nav_Menu.findItem(R.id.nav_login).setVisible(true);
+            nav_Menu.findItem(R.id.nav_register).setVisible(true);
+
+            nav_Menu.findItem(R.id.nav_signOut).setVisible(false);
+        }
 
     }
 
@@ -196,7 +217,13 @@ public class PostsActivity extends AppCompatActivity
             Intent intent = new Intent(this,RegisterActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_signOut) {
-
+            SharedPreferences sharedPreferences=getSharedPreferences("userData",MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear();
+            editor.apply();
+            Intent intent = new Intent(this,PostsActivity.class);
+            finish();
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -214,10 +241,10 @@ public class PostsActivity extends AppCompatActivity
 
     }
 
-    @Override
-    public void addMyPost() {
-        Toast.makeText(this,"Your Post Has Been Uploaded Successfully.",Toast.LENGTH_LONG).show();
-    }
+//    @Override
+//    public void addMyPost() {
+//        Toast.makeText(this,"Your Post Has Been Uploaded Successfully.",Toast.LENGTH_LONG).show();
+//    }
 
     @Override
     public void onRetrieveFailure() {

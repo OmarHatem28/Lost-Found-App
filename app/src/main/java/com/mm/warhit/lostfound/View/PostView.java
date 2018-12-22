@@ -8,7 +8,7 @@ public interface PostView {
 
     void getAllPosts(ArrayList<Post> posts);
 
-    void addMyPost();
+//    void addMyPost();
 
     void onRetrieveFailure();
 

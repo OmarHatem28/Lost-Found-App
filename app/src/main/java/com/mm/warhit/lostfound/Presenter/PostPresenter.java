@@ -63,7 +63,7 @@ public class PostPresenter {
                 });
     }
 
-    public void addPost(Post post) {
+    public void addPost(final Post post) {
 
         Calendar c = Calendar.getInstance();
 
@@ -83,7 +83,8 @@ public class PostPresenter {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        postView.addMyPost();
+                        posts.add(0,post);
+                        postView.getAllPosts(posts);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
