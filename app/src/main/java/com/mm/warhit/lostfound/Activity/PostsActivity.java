@@ -93,7 +93,8 @@ public class PostsActivity extends AppCompatActivity
         } else if (id == R.id.nav_profile) {
 
         } else if (id == R.id.nav_login) {
-
+            Intent intent = new Intent(this,LoginActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_register) {
             Intent intent = new Intent(this,RegisterActivity.class);
             startActivity(intent);

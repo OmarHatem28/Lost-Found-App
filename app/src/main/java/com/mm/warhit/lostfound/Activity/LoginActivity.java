@@ -30,10 +30,10 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     ImageView imageView;
     boolean show_hide = false;
 
-    @BindView(R.id.input_email) EditText _emailText;
-    @BindView(R.id.input_password) EditText _passwordText;
-    @BindView(R.id.btn_signup) Button _loginButton;
-    @BindView(R.id.link_login) TextView _loginLink;
+    @BindView(R.id.input_email_login) EditText _emailText;
+    @BindView(R.id.input_password_login) EditText _passwordText;
+    @BindView(R.id.btn_login) Button _loginButton;
+    @BindView(R.id.link_register) TextView _loginLink;
 
     ProgressDialog progressDialog;
 
