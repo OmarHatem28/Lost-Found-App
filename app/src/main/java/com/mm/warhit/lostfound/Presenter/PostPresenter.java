@@ -39,7 +39,7 @@ public class PostPresenter {
         if ( category.isEmpty() ){
             postsRef = db.collection("posts");
         } else {
-            postsRef = db.collection("posts").whereEqualTo("category",category);
+            postsRef = db.collection("posts").whereEqualTo("category", category);
         }
         postsRef.get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
