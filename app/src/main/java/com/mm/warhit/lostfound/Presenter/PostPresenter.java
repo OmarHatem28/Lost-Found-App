@@ -36,6 +36,7 @@ public class PostPresenter {
     }
 
     public void getPosts(String category){
+        posts.clear();
         if ( category.isEmpty() ){
             postsRef = db.collection("posts");
         } else {
