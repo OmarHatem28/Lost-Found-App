@@ -21,8 +21,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.mm.warhit.lostfound.Adapter.PostsAdapter;
@@ -34,7 +36,7 @@ import com.mm.warhit.lostfound.View.PostView;
 import java.util.ArrayList;
 
 public class PostsActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, PostView {
+        implements NavigationView.OnNavigationItemSelectedListener, PostView, AdapterView.OnItemSelectedListener {
 
     NavigationView navigationView;
     PostsAdapter postsAdapter;
@@ -43,6 +45,7 @@ public class PostsActivity extends AppCompatActivity
     RecyclerView.LayoutManager layoutManager;
     String email, name, itemDescription, itemSerialNumber;
     EditText ET_description, ET_serialNumber;
+    Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,7 @@ public class PostsActivity extends AppCompatActivity
         navigationView.setItemIconTintList(null);
 
         RV = findViewById(R.id.RV);
+        spinner = findViewById(R.id.category_spinner);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -143,7 +147,7 @@ public class PostsActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         postPresenter = new PostPresenter(this, this);
-        postPresenter.getPosts();
+        postPresenter.getPosts("");
 
         //if signed in
         SharedPreferences sharedPreferences=getSharedPreferences("userData",MODE_PRIVATE);
@@ -279,5 +283,16 @@ public class PostsActivity extends AppCompatActivity
         }
 
         return valid;
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        Toast.makeText(this,parent.getItemAtPosition(position).toString(),Toast.LENGTH_SHORT).show();
+        postPresenter.getPosts(parent.getItemAtPosition(position).toString());
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

@@ -10,6 +10,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.mm.warhit.lostfound.Model.Post;
 import com.mm.warhit.lostfound.View.PostView;
@@ -26,7 +27,7 @@ public class PostPresenter {
     PostView postView;
     Context context;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    CollectionReference postsRef;
+    Query postsRef;
     ArrayList<Post> posts = new ArrayList<>();
 
     public PostPresenter(Context context, PostView postView){
@@ -34,8 +35,12 @@ public class PostPresenter {
         this.postView = postView;
     }
 
-    public void getPosts(){
-        postsRef = db.collection("posts");
+    public void getPosts(String category){
+        if ( category.isEmpty() ){
+            postsRef = db.collection("posts");
+        } else {
+            postsRef = db.collection("posts").whereEqualTo("category",category);
+        }
         postsRef.get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
