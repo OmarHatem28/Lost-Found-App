@@ -11,6 +11,13 @@
     <string name="category_mobiles">Mobiles</string>
     <string name="category_clothes">Clothes</string>
     <string name="category_others">Others</string>
+    <string name="categories">Categories</string>
+    <string-array name="categories_array">
+        <item>Electronics</item>
+        <item>Mobiles</item>
+        <item>Clothes</item>
+        <item>Others</item>
+    </string-array>
     <string name="create_one"><font color="#000000">No account yet?</font> <b><font color="#00eaff">Create one</font></b></string>
     <string name="login"><font color="#000000">Already a member?</font> <b><font color="#00eaff">Login</font></b></string>
     <string name="register"><font color="#000000">Not a member?</font> <b><font color="#00eaff">Register</font></b></string>

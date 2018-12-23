@@ -21,8 +21,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.mm.warhit.lostfound.Adapter.PostsAdapter;
@@ -32,6 +35,7 @@ import com.mm.warhit.lostfound.R;
 import com.mm.warhit.lostfound.View.PostView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PostsActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, PostView {
@@ -43,6 +47,7 @@ public class PostsActivity extends AppCompatActivity
     RecyclerView.LayoutManager layoutManager;
     String email, name, itemDescription, itemSerialNumber;
     EditText ET_description, ET_serialNumber;
+    Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +60,7 @@ public class PostsActivity extends AppCompatActivity
         navigationView.setItemIconTintList(null);
 
         RV = findViewById(R.id.RV);
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +81,33 @@ public class PostsActivity extends AppCompatActivity
                                 .setPositiveButton("Post", null) //Set to null. We override the onclick
                                 .setNegativeButton("Cancel", null)
                                 .create();
+
+//                        LayoutInflater layoutInflater =
+//                                (LayoutInflater)getBaseContext()
+//                                        .getSystemService(LAYOUT_INFLATER_SERVICE);
+//
+//                        final View alertDialogView = layoutInflater.inflate(R.layout.post_dialogbox, null);
+//
+//                        spinner = (Spinner)alertDialogView.findViewById(R.id.category_spinner);
+//
+//                        String[] categories = getResources().getStringArray(R.array.categories_array);
+//
+//                        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
+//                                alertDialogView.getContext(),android.R.layout.simple_spinner_item,categories);
+//                        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                        spinner.setAdapter(spinnerArrayAdapter);
+//
+//                        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//                            @Override
+//                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                                Toast.makeText(alertDialogView.getContext(),parent.getItemAtPosition(position).toString(),Toast.LENGTH_LONG).show();
+//                            }
+//
+//                            @Override
+//                            public void onNothingSelected(AdapterView<?> parent) {
+//                                //Another interface callback
+//                            }
+//                        });
 
                         dialog.setOnShowListener(new DialogInterface.OnShowListener() {
 
@@ -100,8 +133,8 @@ public class PostsActivity extends AppCompatActivity
                                             post.setAuthor(name);
                                             post.setDescription(itemDescription);
                                             post.setSerialNumber(itemSerialNumber);
-                                            //Todo: add Spinner
-                                            post.setCategory("not now");
+                                            Toast.makeText(PostsActivity.this,spinner.getSelectedItemPosition()+" HI",Toast.LENGTH_SHORT).show();
+                                            post.setCategory(spinner.getSelectedItem().toString());
                                             //Todo: add Image Uploading Function
                                             postPresenter.addPost(post);
                                         }
@@ -121,8 +154,8 @@ public class PostsActivity extends AppCompatActivity
                         dialog.show();
                     } else {
                         Toast.makeText(getApplicationContext(), "Please Login First", Toast.LENGTH_LONG).show();
-//                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-//                        startActivity(intent);
+                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(intent);
                     }
                 }
                 else {
@@ -193,7 +226,6 @@ public class PostsActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        // ToDo: implement search condition
         if (id == R.id.category_item_electronics) {
             postPresenter.getPosts("Electronics");
         }else if (id == R.id.category_item_mobiles) {

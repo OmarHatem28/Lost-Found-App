@@ -35,8 +35,9 @@ public class PostPresenter {
         this.postView = postView;
     }
 
-    public void getPosts(final String category){
-        if (category.isEmpty()) {
+    public void getPosts(String category){
+        posts.clear();
+        if ( category.isEmpty() ){
             postsRef = db.collection("posts");
         } else {
             postsRef = db.collection("posts").whereEqualTo("category", category);

@@ -61,14 +61,14 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
             }
         });
 
-//        _loginLink.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent=new Intent(getApplicationContext(),LoginAct.class);
-//                startActivity(intent);
-//                finish();
-//            }
-//        });
+        _loginLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getApplicationContext(),LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
     }
 
